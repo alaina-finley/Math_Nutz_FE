@@ -1,0 +1,13 @@
+<div #problemsSection>
+  <p>
+    Here are some problems maybe:
+  </p>
+  <li *ngFor="let problem of problems">
+    <div [ngSwitch]="problem.operation">
+      <ng-template [ngSwitchCase]= "0"> <h1> {{problem.first}} + {{problem.second}} </h1></ng-template>
+      <ng-template [ngSwitchCase]= "1"> <h1> {{problem.first}} - {{problem.second}} </h1> </ng-template>
+      <ng-template [ngSwitchCase]= "2"> <h1> {{problem.first}} + {{problem.second}} </h1></ng-template>
+      <ng-template ngSwitchDefault> </ng-template>
+    </div>
+  </li>
+</div>

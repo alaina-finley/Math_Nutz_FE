@@ -1,0 +1,62 @@
+<div>
+  <h1 class="welcome">Welcome to Island Hopper</h1>
+</div>
+
+<div class="row">
+  <div class="column">
+  <!-- <mat-card> -->
+      <!-- <mat-card-content> -->
+          <div>
+            <img src="assets/island.png" class="islandImg"/>
+
+            <i (click)="displayProb(0)" class="fa fa-question" style="position:absolute; margin-top:10%; margin-left:11%;" *ngIf=!questions[0].completed></i>
+            <i (click)="displayProb(1)" class="fa fa-question" style="position:absolute; margin-top:8%; margin-left:19%;" *ngIf=!questions[1].completed></i>
+            <i (click)="displayProb(2)" class="fa fa-question" style="position:absolute; margin-top:12%; margin-left:32%;" *ngIf=!questions[2].completed></i>
+            <i (click)="displayProb(3)" class="fa fa-question" style="position:absolute; margin-top:21%; margin-left:9%;" *ngIf=!questions[3].completed></i>
+            <i (click)="displayProb(4)" class="fa fa-question" style="position:absolute; margin-top:19%; margin-left:22%;" *ngIf=!questions[4].completed></i>
+            <i (click)="displayProb(5)" class="fa fa-question" style="position:absolute; margin-top:20%; margin-left:30%;" *ngIf=!questions[5].completed></i>
+            <i (click)="displayProb(6)" class="fa fa-question" style="position:absolute; margin-top:15%; margin-left:24%;" *ngIf=!questions[6].completed></i>
+            <i (click)="displayProb(7)" class="fa fa-question" style="position:absolute; margin-top:30%; margin-left:20%;" *ngIf=!questions[7].completed></i>
+            <i (click)="displayProb(8)" class="fa fa-question" style="position:absolute; margin-top:29%; margin-left:29%;" *ngIf=!questions[8].completed></i>
+            <i (click)="displayProb(9)" class="fa fa-question" style="position:absolute; margin-top:26%; margin-left:13%;" *ngIf=!questions[9].completed></i>
+          </div>
+      <!-- </mat-card-content> -->
+  <!-- </mat-card> -->
+</div>
+<div class="column">
+  <!-- <mat-card> -->
+    <!-- <mat-card-content> -->
+      <div *ngIf="quesSelected" class="flex-container flex-center" style="flex-direction: column">
+        <h2>You have found the following problem: </h2>
+        <div [ngSwitch]="currentQues.operation">
+          <ng-template [ngSwitchCase]= "0"> <h1> {{currentQues.first}} + {{currentQues.second}} </h1></ng-template>
+          <ng-template [ngSwitchCase]= "1"> <h1> {{currentQues.first}} - {{currentQues.second}} </h1> </ng-template>
+          <ng-template ngSwitchDefault> </ng-template>
+        </div>
+        <h2>What is your answer: </h2>
+        <form>
+          <input type="number" #studentAnswer required/>
+          <input (click)=checkAns(currentQues,studentAnswer.value) type="submit" value="Check Answer"/>
+          <!-- <button (click)=checkAns(currentQues.first,currentQues.second,currentQues.operation)>Check my Answer</button> -->
+        </form>
+        <div>
+          <div  *ngIf="rewardPhase">
+            <div [ngSwitch]="currentCorrect">
+              <ng-template [ngSwitchCase]= "1">
+                <h1> Congratulations! You earned: </h1>
+                <input (click)=resetBoard(currentQues,true) type="submit" value="Awesome! Keep exploring"/>
+              </ng-template>
+              <ng-template [ngSwitchCase]= "0">
+                 <h1> Nice Try! The correct answer was: {{currentAns}}</h1>
+                 <input (click)=resetBoard(currentQues,false) type="submit" value="That's Okay! Keep Exploring"/>
+               </ng-template>
+              <ng-template ngSwitchDefault> </ng-template>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <!-- </mat-card-content> -->
+  <!-- </mat-card> -->
+</div>
+</div>
