@@ -11,14 +11,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { ProblemService } from './problems/problems.service';
+import { MainIslandComponent } from './main-island/main-island.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 // import {MatButtonModule,
 //  MatCheckboxModule,
 //  MatCardModule,
 //  MatProgressSpinnerModule,
 // MatToolbarModule} from '@angular/material';
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule, HttpClientModule, HttpModule ],
-  declarations: [ AppComponent, GameLevelComponent, ProblemsComponent ],
+  imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule, HttpClientModule, HttpModule, AppRoutingModule ],
+  declarations: [ AppComponent, GameLevelComponent, ProblemsComponent, MainIslandComponent, DashboardComponent ],
   providers: [ ProblemService ],
   bootstrap:    [ AppComponent ]
 })
