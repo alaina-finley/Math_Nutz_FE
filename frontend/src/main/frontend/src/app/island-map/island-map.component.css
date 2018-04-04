@@ -1,0 +1,66 @@
+/* Application-wide Styles */
+/* h1 {
+    margin:0%;
+    background: #089de3;
+    padding-top: 4%;
+    padding-left: 30%;
+    position: relative;
+    color: #369;
+
+} */
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+body {
+
+    .main_content{
+        position:absolute;
+        /* padding-bottom: 100%; */
+        margin:0%;
+        background: #089de3;
+    }
+    /* .gameIsland1{
+        position: relative;
+        margin-left: 50%;
+        margin-top: 50%;
+
+        background-color: #089de3;
+
+    }
+    #add1
+    {
+        position: absolute;
+        top: 20%;
+        left: 0px;
+    }
+    .gameIsland2{
+        position: fixed;
+        margin-left: 50%;
+        margin-top: 50%;
+
+        background-color: #089de3;
+    }
+    .storeIsland{
+        position: fixed;
+        margin-left: 50%;
+        margin-top: 50%;
+
+        background-color: #089de3;
+    } */
+}
+body, input[text], button {
+background: #089de3;
+  color: #888;
+  margin:0%;
+  font-family: Cambria, Georgia;
+}
+/* everywhere else */
+* {
+    margin:0%;
+  font-family: Arial, Helvetica, sans-serif;
+}

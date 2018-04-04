@@ -26,6 +26,7 @@
 <div class="column">
   <!-- <mat-card> -->
     <!-- <mat-card-content> -->
+    <a (click)="returnToMap()"><button>Return to Map</button></a>
       <div *ngIf="quesSelected" class="flex-container flex-center" style="flex-direction: column">
         <h2>You have found the following problem: </h2>
         <div [ngSwitch]="currentQues.operation">
@@ -56,6 +57,7 @@
           </div>
         </div>
       </div>
+
     <!-- </mat-card-content> -->
   <!-- </mat-card> -->
 </div>

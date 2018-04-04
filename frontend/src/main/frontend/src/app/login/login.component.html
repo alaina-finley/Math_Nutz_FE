@@ -1,0 +1,11 @@
+<p>
+  login works!
+</p>
+<div>
+  <form>
+      Email: <input #email type="text"/>
+      Password: <input #password type="password"/>
+      <button (click)="login(email.value,password.value)">Submit</button>
+  </form>
+  <button (click)="view()">View</button>
+</div>
