@@ -17,8 +17,8 @@ export class AppComponent implements OnInit, OnChanges {
   ){}
 
   ngOnInit() {
-    // this.gameProgressService.instantiateProgresses();
-    // this.gameProblemService.instantiateProblems();
+    this.gameProgressService.instantiateProgresses();
+    this.gameProblemService.instantiateProblems();
     this.usefulUserService.instantiateUsers();
   }
 

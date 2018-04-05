@@ -75,3 +75,10 @@ p {
   font-size: 2em;
   background-color: #5042f4;
 }
+
+.rewardBox{
+width: 20%;
+height: 20%;
+display: inline-block; /* Change this to block and see what happens */
+position:relative;
+}

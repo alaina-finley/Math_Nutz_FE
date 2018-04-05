@@ -5,6 +5,7 @@ import { GameProgressService } from '../progress/game-progress.service';
 import { Progress } from '../progress/progress';
 import { GameProblemService } from '../problems/game-problems.service';
 import { Problem } from '../problems/problem';
+import { AuthenticationService } from '../login/authentication.service';
 
 @Component({
   selector: 'app-teacher',
@@ -12,16 +13,18 @@ import { Problem } from '../problems/problem';
   styleUrls: ['./teacher.component.css']
 })
 export class TeacherComponent implements OnInit {
-  userArr = [];
 
   constructor(
-    private user: UserService,
-    private gameProgress: GameProgressService,
-    private gameProblem: GameProblemService,
+    private auth: AuthenticationService,
   ) { }
 
   ngOnInit() {
-    this.userArr = JSON.parse(localStorage.getItem("users"));
+    // this.userArr = JSON.parse(localStorage.getItem("users"));
+    // this.getUsers();
+  }
+
+  logout(){
+    this.auth.logout()
   }
 
 

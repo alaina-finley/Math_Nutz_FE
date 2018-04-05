@@ -13,6 +13,18 @@ export class GameProgressService {
     private progressService: ProgressService,
   ){}
 
+  getAllTotal(studentId: number): number[]{
+    var sr = (JSON.parse(localStorage.getItem("progresses"))).find(p => p.student_id == studentId);
+    // var sr = this.progresses.find(p => p.student_id == studentId);
+    return [sr.lev11_total, sr.lev12_total, sr.lev13_total, sr.lev21_total, sr.lev22_total, sr.lev23_total, sr.lev31_total, sr.lev32_total, sr.lev33_total, sr.boss_total];
+  }
+
+  getAllCorrect(studentId: number): number[]{
+    var sr = (JSON.parse(localStorage.getItem("progresses"))).find(p => p.student_id == studentId);
+    // var sr = this.progresses.find(p => p.student_id == studentId);
+    return [sr.lev11_correct, sr.lev12_correct, sr.lev13_correct, sr.lev21_correct, sr.lev22_correct, sr.lev23_correct, sr.lev31_correct, sr.lev32_correct, sr.lev33_correct, sr.boss_correct];
+  }
+
   findCompleted(studentId: number, records: any[], diff: number, oper: number): number{
     var record = records.find(p => p.student_id == studentId);
     if(oper == 0){ //addition question
@@ -73,7 +85,7 @@ export class GameProgressService {
     }else{
       toBeUpdated.boss_total++;
     }
-    this.progressService.updateProgress(toBeUpdated).then(progress => console.log(progress));
+    this.progressService.updateProgress(toBeUpdated).then(() => localStorage.setItem("progresses", JSON.stringify(this.progresses)));
   }
 
   incrementLevCorrect(studentId: number, diff: number, oper: number){
@@ -81,31 +93,41 @@ export class GameProgressService {
     if(oper == 0){ //addition question
       if(diff == 5){
         toBeUpdated.lev11_correct++;
+        toBeUpdated.lev11_total++;
       }else if(diff == 50){
         toBeUpdated.lev12_correct++;
+        toBeUpdated.lev12_total++;
       }else{
         toBeUpdated.lev13_correct++;
+        toBeUpdated.lev13_total++;
       }
     }else if(oper == 1){ //subtraction question
       if(diff == 5){
         toBeUpdated.lev21_correct++;
+        toBeUpdated.lev21_total++;
       }else if(diff == 50){
         toBeUpdated.lev22_correct++;
+        toBeUpdated.lev22_total++;
       }else{
         toBeUpdated.lev23_correct++;
+        toBeUpdated.lev23_total++;
       }
     }else if(oper == 2){ //place value question
       if(diff == 5){
         toBeUpdated.lev31_correct++;
+        toBeUpdated.lev31_total++;
       }else if(diff == 50){
         toBeUpdated.lev32_correct++;
+        toBeUpdated.lev32_total++;
       }else{
         toBeUpdated.lev33_correct++;
+        toBeUpdated.lev33_total++;
       }
     }else{
       toBeUpdated.boss_correct++;
+      toBeUpdated.boss_total++;
     }
-    this.progressService.updateProgress(toBeUpdated).then(progress => console.log(progress));
+    this.progressService.updateProgress(toBeUpdated).then(() => localStorage.setItem("progresses", JSON.stringify(this.progresses)));
   }
 
   instantiateProgresses(): void {

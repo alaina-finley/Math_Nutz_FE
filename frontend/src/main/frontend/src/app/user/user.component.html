@@ -1,3 +1,15 @@
-<p>
-  user works!
-</p>
+<div>
+<tr *ngFor="let user of users">
+  <td *ngIf="user.role=='student'">
+    <p>
+      User: {{user.username}}     Accuracy: {{(getAllCorrect(user.id)/getAllTotal(user.id)).toFixed(2)}}  <a (click)="deleteUser(user.id)"><i class="fa fa-trash"></i></a>
+    </p>
+  </td>
+</tr>
+
+<form>
+        Username: <input #username type="text" name="username" placeholder="username">
+        Password: <input #password type="text" name="password" placeholder="password">
+        <button (click)="createUser(username.value,password.value)">submit</button>
+</form>
+</div>

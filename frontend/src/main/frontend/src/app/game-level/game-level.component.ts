@@ -80,34 +80,59 @@ export class GameLevelComponent implements OnInit, OnChanges {
     this.generateProbs(this.dbquestions);
   }
 
+  teacherSkip() {
+    this.rewardPhase = true;
+    this.currentCorrect = 1;
+    // this.setCoinNum();
+  }
+
+  checkIfSkip(): boolean{
+    return 'demo' == (JSON.parse(localStorage.getItem("user"))).role;
+  }
+
   generateProbs(dbProbs: any[]): void {
-    // var progresses = JSON.parse(localStorage.getItem("progress"));
-    // var relevant = progresses.find(p => p.student_id == );
     var tmpQs= [];
+    let tmp, tmp2 = 0;
     for(let i=0; i<10; i++){
       if(i<dbProbs.length){
-        this.questions[i] = {'first': dbProbs[i].first, 'second': dbProbs[i].second, 'operation': dbProbs[i].operation, 'completed':false};
+        this.questions[i] = {'first': dbProbs[i].first, 'second': dbProbs[i].second, 'operation': dbProbs[i].operation, 'completed':false, 'rewardType': -1};
       }else{
-        let tmp = Math.floor(Math.random()*this.difficulty);
-        let tmp2 = Math.floor(Math.random()*this.difficulty);
+        if(this.operation==2){
+          if(this.difficulty==5){
+            tmp = (Math.floor(Math.random()*10))*10;
+            tmp2 = Math.floor(Math.random()*10);
+          }else if(this.difficulty==50){
+            tmp = (Math.floor(Math.random()*100))*10;
+            tmp2 = Math.floor(Math.random()*10);
+          }else{
+            tmp = Math.floor(Math.random()*this.difficulty);
+            tmp2 = Math.floor(Math.random()*this.difficulty);
+          }
+        }else{
+          tmp = Math.floor(Math.random()*this.difficulty);
+          tmp2 = Math.floor(Math.random()*this.difficulty);
+        }
         let first = Math.max(tmp, tmp2);
         let second = Math.min(tmp, tmp2);
-        this.questions[i] = {'first': first, 'second': second, 'operation': this.operation, 'completed':false};
+        this.questions[i] = {'first': first, 'second': second, 'operation': this.operation, 'completed':false, 'rewardType': -1};
       }
       if(i>(9-this.previouslycompleted)){
         this.questions[i].completed = true;
       }
+      if (i === 2 || i === 5 || i === 8) {
+        this.questions[i].rewardType = 1; //won eg piece
+      } else {
+        this.questions[i].rewardType = 0; //won $MONEYZ
+      }
     }
   }
 
- displayProb(prob: number): void {
-   // // var allProblems = (this.gameProblemService.getDBProblems()).concat(this.createRandomProblems());
-   // var allProblems = this.createRandomProblems();
-   // var numNeeded = this.gameProgressService.findCompleted((JSON.parse(localStorage.getItem('user'))).id, this.difficulty, this.operation);
-   // for(let i=0; i< 10; i++){
-   //   this.questions[i] = allProblems[i];
-   // }
+  // sets coinNum to a random number between 5 and 25
+  setCoinNum(): number {
+    return Math.floor(Math.random() * ((25 - 5) + 1) + 5);
+  }
 
+ displayProb(prob: number): void {
    if (this.quesSelected == false){
      this.currentQues = this.questions[prob];
      this.quesSelected = !this.quesSelected;
@@ -131,8 +156,8 @@ export class GameLevelComponent implements OnInit, OnChanges {
  resetBoard(ques: any, correct: boolean): void {
    if(correct) {
      ques.completed = correct;
+     // increments total and correct
      this.gameProgressService.incrementLevCorrect((JSON.parse(localStorage.getItem('user'))).id, this.difficulty, this.operation);
-     this.gameProgressService.incrementLevTotal((JSON.parse(localStorage.getItem('user'))).id, this.difficulty, this.operation);
    } else {
      let tmp = Math.floor(Math.random()*this.difficulty);
      let tmp2 = Math.floor(Math.random()*this.difficulty);

@@ -1,6 +1,7 @@
 <h1>Island Hopper Management Pane</h1>
-<tr *ngFor="let user of userArr">
-  <td *ngIf="user.role!='teacher'">{{user.username}}</td>
-</tr>
-
-<!-- <router-outlet></router-outlet> -->
+<div>
+<a [routerLink]="['users']">Manage Students</a>
+<a [routerLink]="['problems']">Manage Problems</a>
+</div>
+<router-outlet></router-outlet>
+<a (click)="logout()"><button>LogOut</button></a>
