@@ -91,7 +91,7 @@ export class GameLevelComponent implements OnInit, OnChanges {
   }
 
   generateProbs(dbProbs: any[]): void {
-    var tmpQs= [];
+    var tmpQs = [];
     let tmp, tmp2 = 0;
     for(let i=0; i<10; i++){
       if(i<dbProbs.length){
@@ -122,7 +122,7 @@ export class GameLevelComponent implements OnInit, OnChanges {
       if (i === 2 || i === 5 || i === 8) {
         this.questions[i].rewardType = 1; //won eg piece
       } else {
-        this.questions[i].rewardType = 0; //won $MONEYZ
+        this.questions[i].rewardType = 0; // won $MONEYZ
       }
     }
   }
@@ -140,12 +140,12 @@ export class GameLevelComponent implements OnInit, OnChanges {
  }
 
  checkAns(ques: any, ans: number): void {
-   let correct: boolean = false;
+   let correct = false;
    if(ques.operation == 0 || ques.operation == 2){
       correct = (ques.first+ques.second == ans);
       this.currentCorrect = (ques.first+ques.second == ans)? 1 : 0;
       this.currentAns = ques.first+ques.second;
-    }else{
+    } else {
       correct = (ques.first-ques.second == ans);
       this.currentCorrect = (ques.first-ques.second == ans)? 1 : 0;
       this.currentAns = ques.first-ques.second;
@@ -174,7 +174,7 @@ export class GameLevelComponent implements OnInit, OnChanges {
    this.rewardPhase = false;
  }
 
- returnToMap(){
+ returnToMap() {
    this.router.navigate(['islandMap']);
  }
 
