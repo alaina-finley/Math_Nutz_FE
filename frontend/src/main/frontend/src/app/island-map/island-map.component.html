@@ -2,31 +2,56 @@
         <img src="assets/IslandHopperLogo.png" alt="Logo" style="height:15%; width:65%" class="center">
         <div class = "main_content">
 
-        <div *ngFor="let user of users" class = "gameIsland1">
-
-           
-                
-            <a *ngIf="additionIslandsUnlocked(user.id) == 0" [routerLink]="['/game', 5, 0]">
+        <div class = "gameIsland1">  
+             <!-- Island 1 -->
+             <!-- Island is unlocked and needs to be completed -->
+            <a *ngIf="additionIslandsUnlocked() == 0" [routerLink]="['/game', 5, 0]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 0%; left: 27.55%; width:10%;height:10%;">
             </a>
-        
-            <a *ngIf="additionIslandsUnlocked(user.id) == 1" [routerLink]="['/game', 50, 0]">
+            <!-- Island is Completed -->
+            <a *ngIf="additionIslandsUnlocked() > 0">
+                <img src="/assets/completedGameIsland.png" alt="Completed Game Island" style="position:relative; top: 0%; left: 27.55%; width:10%;height:10%;">
+                
+            </a>
+            <!-- Island 2 -->
+            <!-- Island is unlocked and needs to be completed -->
+            <a *ngIf="additionIslandsUnlocked() == 1" [routerLink]="['/game', 50, 0]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 0%; left: 37.5%; width:10%;height:10%;">
             </a>
-    
-            <a *ngIf="additionIslandsUnlocked(user.id) == 2" [routerLink]="['/game', 500, 0]">
+            <!-- Island is Completed -->
+            <a *ngIf="additionIslandsUnlocked() > 1">
+                <img src="/assets/completedGameIsland.png" alt="Completed Game Island" style="position:relative; top: 0%; left: 37.5%; width:10%;height:10%;">
+                
+            </a>
+            <!-- Island is Locked -->
+            <a *ngIf="additionIslandsUnlocked() < 1">
+                    <img src="/assets/lockedGameIsland.png" alt="Locked Game Island" style="position:relative; top: 0%; left: 37.5%; width:10%;height:10%;">
+                </a>
+
+                <!-- Island 3 -->
+                <!-- Island is unlocked and needs to be completed -->
+            <a *ngIf="additionIslandsUnlocked() == 2" [routerLink]="['/game', 500, 0]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 0%; left: 47.5%;width:10%;height:10%;">
+            </a>
+            <!-- Island is Completed -->
+            <a *ngIf="additionIslandsUnlocked() > 2">
+                 <img src="/assets/completedGameIsland.png" alt="Completed Game Island" style="position:relative; top: 0%; left: 47.5%;width:10%;height:10%;">
+                 
+                </a>
+                <!-- Island is Locked -->
+            <a *ngIf="additionIslandsUnlocked() < 2">
+                <img src="/assets/lockedGameIsland.png" alt="Locked Game Island" style="position:relative; top: 0%; left: 47.5%;width:10%;height:10%;">
             </a>
         
         </div>
-        <div *ngFor="let user of users" class = "gameIsland2">
-            <a *ngIf="subtractionIslandsUnlocked(user.id) == 0" [routerLink]="['/game', 5, 1]">
+        <div class = "gameIsland2">
+            <a *ngIf="subtractionIslandsUnlocked() == 0" [routerLink]="['/game', 5, 1]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 5%; left: 27.5%;width:10%;height:10%;">
             </a>
-            <a *ngIf="subtractionIslandsUnlocked(user.id) == 1" [routerLink]="['/game', 50, 1]">
+            <a *ngIf="subtractionIslandsUnlocked() == 1" [routerLink]="['/game', 50, 1]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 5%; left: 37.5%;width:10%;height:10%;">
             </a>
-            <a *ngIf="subtractionIslandsUnlocked(user.id) == 2" [routerLink]="['/game', 500, 1]">
+            <a *ngIf="subtractionIslandsUnlocked() == 2" [routerLink]="['/game', 500, 1]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 5%; left: 47.5%;width:10%;height:10%;">
             </a>
         </div>
@@ -34,14 +59,14 @@
                 <img src="/assets/BossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
         </div> -->
 
-        <div *ngFor="let user of users" class = "gameIsland3">
-            <a *ngIf="pvIslandsUnlocked(user.id) == 0" [routerLink]="['/game', 5, 2]">
+        <div class = "gameIsland3">
+            <a *ngIf="pvIslandsUnlocked() == 0" [routerLink]="['/game', 5, 2]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 10%; left: 27.5%;width:10%;height:10%;">
             </a>
-            <a *ngIf="pvIslandsUnlocked(user.id) == 1" [routerLink]="['/game', 50, 2]">
+            <a *ngIf="pvIslandsUnlocked() == 1" [routerLink]="['/game', 50, 2]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 10%; left: 37.5%;width:10%;height:10%;">
             </a>
-            <a *ngIf="pvIslandsUnlocked(user.id) == 2" [routerLink]="['/game', 500, 2]">
+            <a *ngIf="pvIslandsUnlocked() == 2" [routerLink]="['/game', 500, 2]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 10%; left: 47.5%;width:10%;height:10%;">
             </a>
                 <!-- <app-island></app-island> -->
