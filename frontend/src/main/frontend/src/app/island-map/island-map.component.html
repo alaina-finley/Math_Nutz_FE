@@ -2,57 +2,54 @@
         <img src="assets/IslandHopperLogo.png" alt="Logo" style="height:15%; width:65%" class="center">
         <div class = "main_content">
 
-        <div class = "gameIsland1">
-            <!-- <a href="default.asp"> -->
-            <a [routerLink]="['/game', 5, 0]">
+        <div *ngFor="let user of users" class = "gameIsland1">
+
+           
+                
+            <a *ngIf="additionIslandsUnlocked(user.id) == 0" [routerLink]="['/game', 5, 0]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 0%; left: 27.55%; width:10%;height:10%;">
             </a>
-            <a [routerLink]="['/game', 50, 0]">
+        
+            <a *ngIf="additionIslandsUnlocked(user.id) == 1" [routerLink]="['/game', 50, 0]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 0%; left: 37.5%; width:10%;height:10%;">
             </a>
-            <a [routerLink]="['/game', 500, 0]">
+    
+            <a *ngIf="additionIslandsUnlocked(user.id) == 2" [routerLink]="['/game', 500, 0]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 0%; left: 47.5%;width:10%;height:10%;">
             </a>
-            <!-- </a> -->
+        
         </div>
-        <div class = "gameIsland2">
-            <!-- <a href="default.asp"> -->
-            <a [routerLink]="['/game', 5, 1]">
+        <div *ngFor="let user of users" class = "gameIsland2">
+            <a *ngIf="subtractionIslandsUnlocked(user.id) == 0" [routerLink]="['/game', 5, 1]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 5%; left: 27.5%;width:10%;height:10%;">
             </a>
-            <a [routerLink]="['/game', 50, 1]">
+            <a *ngIf="subtractionIslandsUnlocked(user.id) == 1" [routerLink]="['/game', 50, 1]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 5%; left: 37.5%;width:10%;height:10%;">
             </a>
-            <a [routerLink]="['/game', 500, 1]">
+            <a *ngIf="subtractionIslandsUnlocked(user.id) == 2" [routerLink]="['/game', 500, 1]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 5%; left: 47.5%;width:10%;height:10%;">
             </a>
-                <!-- <app-island></app-island> -->
-            <!-- </a> -->
         </div>
         <!-- <div class = "bossIsland">
                 <img src="/assets/BossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
         </div> -->
 
-        <div class = "gameIsland3">
-            <!-- <a href="default.asp"> -->
-            <a [routerLink]="['/game', 5, 2]">
+        <div *ngFor="let user of users" class = "gameIsland3">
+            <a *ngIf="pvIslandsUnlocked(user.id) == 0" [routerLink]="['/game', 5, 2]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 10%; left: 27.5%;width:10%;height:10%;">
             </a>
-            <a [routerLink]="['/game', 50, 2]">
+            <a *ngIf="pvIslandsUnlocked(user.id) == 1" [routerLink]="['/game', 50, 2]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 10%; left: 37.5%;width:10%;height:10%;">
             </a>
-            <a [routerLink]="['/game', 500, 2]">
+            <a *ngIf="pvIslandsUnlocked(user.id) == 2" [routerLink]="['/game', 500, 2]">
                 <img src="/assets/gameIsland.png" alt="Game Island" style="position:relative; top: 10%; left: 47.5%;width:10%;height:10%;">
             </a>
                 <!-- <app-island></app-island> -->
-            <!-- </a> -->
         </div>
         <div class = "storeIsland">
-            <!-- <a href="default.asp"> -->
                 <img src="/assets/StoreIsland.png" alt="Store Island" style="position:relative; top: 20%; left: 80%;width:10%;height:10%;">
                 <img src="/assets/creatureIsland.png" alt="Creature Island" style="position:relative; top: 20%; left: 5%;width:10%;height:10%;">
 
-            <!-- </a> -->
         </div>
 </div>
 </body>
