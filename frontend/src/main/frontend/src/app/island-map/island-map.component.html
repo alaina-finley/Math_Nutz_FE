@@ -88,11 +88,17 @@
       <a *ngIf="subtractionIslandsUnlocked() > 2">
         <img src="/assets/completedGameIsland.png" alt="Completed Game Island" style="position:relative; top: 5%; left: 47.5%;width:10%;height:10%;">
       </a>
-
     </div>
-    <!-- <div class = "bossIsland">
-                <img src="/assets/BossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
-        </div> -->
+
+
+    <div class="bossIsland">
+      <a *ngIf="isBossIslandUnlocked() == true">
+        <img src="/assets/BossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
+      </a>
+      <a *ngIf="isBossIslandUnlocked() === false">
+          <img src="/assets/BossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
+        </a>
+    </div>
 
     <div class="gameIsland3">
       <!-- Island 1 -->
