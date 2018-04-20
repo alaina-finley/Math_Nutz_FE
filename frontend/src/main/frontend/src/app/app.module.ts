@@ -23,10 +23,11 @@ import { UsefulUserService } from './user/useful-user.service';
 import { routes } from './app.routes';
 import { ProgressComponent } from './progress/progress.component';
 import { TeacherComponent } from './teacher/teacher.component';
+import { HomeLevelComponent } from './home-level/home-level.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule, HttpClientModule, HttpModule, routes ],
-  declarations: [ AppComponent, GameLevelComponent, ProblemsComponent, UserComponent, LoginComponent, IslandMapComponent, ProgressComponent, TeacherComponent ],
+  declarations: [ AppComponent, GameLevelComponent, ProblemsComponent, UserComponent, LoginComponent, IslandMapComponent, ProgressComponent, TeacherComponent, HomeLevelComponent ],
   providers: [ ProblemService, UserService, AuthenticationService, ProgressService, GameProgressService, GameProblemService, UsefulUserService ],
   bootstrap:    [ AppComponent ]
 })

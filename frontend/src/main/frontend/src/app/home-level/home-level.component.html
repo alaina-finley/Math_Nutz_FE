@@ -1,0 +1,17 @@
+<body>
+  <div>
+    <img src="assets/creatureIsland.png" class="homeImg"/>
+
+    <img src="assets/creature1.png" style="position:absolute; margin-top:13%; margin-left:36%;" class="monster" *ngIf=shouldDisplay(5,0) />
+    <img src="assets/creature2.png" style="position:absolute; margin-top:15%; margin-left:33%;" class="monster" *ngIf=shouldDisplay(50,0) />
+    <img src="assets/creature3.png" style="position:absolute; margin-top:25%; margin-left:62%;" class="monster" *ngIf=shouldDisplay(500,0) />
+    <img src="assets/creature4.png" style="position:absolute; margin-top:8%; margin-left:63%;" class="monster" *ngIf=shouldDisplay(5,1) />
+    <img src="assets/creature5.png" style="position:absolute; margin-top:25%; margin-left:38%;" class="monster" *ngIf=shouldDisplay(50,1) />
+    <img src="assets/creature6.png" style="position:absolute; margin-top:22%; margin-left:35%;" class="monster" *ngIf=shouldDisplay(500,1) />
+    <img src="assets/creature7.png" style="position:absolute; margin-top:27%; margin-left:36%;" class="monster" *ngIf=shouldDisplay(5,2) />
+    <img src="assets/creature8.png" style="position:absolute; margin-top:21%; margin-left:55%;" class="monster" *ngIf=shouldDisplay(50,2) />
+    <img src="assets/creature9.png" style="position:absolute; margin-top:15%; margin-left:60%;" class="monster" *ngIf=shouldDisplay(500,2) />
+  </div>
+</body>
+<!-- <a (click)="returnMap()"><button>Log Out</button></a> -->
+<button (click)="returnMap()" style="margin:1%; position:absolute">Return to Map</button>
