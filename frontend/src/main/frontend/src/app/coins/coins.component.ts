@@ -37,13 +37,8 @@ export class CoinsComponent implements OnInit {
         this.coins.unshift(createCoin)
       })
       .then(() => {
-        var tmp = [];
-        this.coins.forEach(function(value){
-          if(value.operation != -1){
-            tmp.push(value);
-          }
-        });
-        localStorage.setItem('coins', JSON.stringify(tmp));
+        // var tmp = [];
+        // localStorage.setItem('coins', JSON.stringify(tmp));
       });
   }
 
@@ -53,13 +48,8 @@ export class CoinsComponent implements OnInit {
       this.coins = this.coins.filter(coin => coin.id != id);
     })
     .then(() => {
-      var tmp = [];
-      this.coins.forEach(function(value){
-        if(value.operation != -1){
-          tmp.push(value);
-        }
-      });
-      localStorage.setItem("coins", JSON.stringify(tmp));
+      // var tmp = [];
+      // localStorage.setItem("coins", JSON.stringify(tmp));
     });
   }
 
@@ -74,14 +64,15 @@ export class CoinsComponent implements OnInit {
   }
 
   getNextIndex(): number{
-    var coinArr = JSON.parse(localStorage.getItem("coins"));
-    var ind=0;
-    coinArr.forEach(function(value){
-      if(value.id>ind && value.operation != -1){
-        ind = value.id;
-      }
-    });
-    return ind+1;
+    // var coinArr = JSON.parse(localStorage.getItem("coins"));
+    // var ind=0;
+    // coinArr.forEach(function(value){
+    //   if(value.id>ind && value.operation != -1){
+    //     ind = value.id;
+    //   }
+    // });
+    // return ind+1;
+    return 0;
   }
 
   logIt(){

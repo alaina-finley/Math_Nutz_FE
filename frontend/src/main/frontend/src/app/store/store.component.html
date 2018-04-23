@@ -1,3 +1,23 @@
-<p>
-  store works!
-</p>
+<body>
+  <div>
+      <h1>Store</h1>
+      <p> Your coins: </p>
+      <p> Item: Castle -- Costs: 150 <button (click)="buyItem(1)">buy</button></p>
+      <img src="assets/castle.png"/>
+
+      <p> Item: Tree -- Costs: 10 <button (click)="buyItem(2)">buy</button></p>
+      <img src="assets/tree.png"/>
+
+      <p> Item: Flag -- Costs: 30 <button (click)="buyItem(3)">buy</button></p>
+      <img src="assets/flag.png"/>
+
+      <p> Item: Trophy -- Costs: 50 <button (click)="buyItem(4)">buy</button></p>
+      <img src="assets/trophy.png"/>
+
+      <p> Item: Boat -- Costs: 70 <button (click)="buyItem(5)">buy</button></p>
+      <img src="assets/boat.png"/>
+      
+      <br>
+      <button (click)="returnMap()" style="margin:1%; position:absolute">Return to Map</button>
+  </div>
+</body>
