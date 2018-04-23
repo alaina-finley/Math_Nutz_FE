@@ -7,7 +7,7 @@ import { AuthenticationService } from '../login/authentication.service';
   styleUrls: ['./island-map.component.css']
 })
 export class IslandMapComponent implements OnInit {
-  title = 'Island Map'
+  title = 'Island Map';
   constructor(
     private auth: AuthenticationService,
   ) { }
@@ -15,7 +15,7 @@ export class IslandMapComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
+  logout() {
     this.auth.logout();
   }
 
