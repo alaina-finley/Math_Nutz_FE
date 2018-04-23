@@ -25,10 +25,11 @@ import { ProgressComponent } from './progress/progress.component';
 import { TeacherComponent } from './teacher/teacher.component';
 import { StoreComponent } from './store/store.component';
 import { CoinsComponent } from './coins/coins.component';
+import { HomeLevelComponent } from './home-level/home-level.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule, HttpClientModule, HttpModule, routes ],
-  declarations: [ AppComponent, GameLevelComponent, ProblemsComponent, UserComponent, LoginComponent, IslandMapComponent, ProgressComponent, TeacherComponent, StoreComponent, CoinsComponent ],
+  declarations: [ AppComponent, GameLevelComponent, ProblemsComponent, UserComponent, LoginComponent, IslandMapComponent, ProgressComponent, TeacherComponent, StoreComponent, CoinsComponent, HomeLevelComponent ],
   providers: [ ProblemService, UserService, AuthenticationService, ProgressService, GameProgressService, GameProblemService, UsefulUserService ],
   bootstrap:    [ AppComponent ]
 })
