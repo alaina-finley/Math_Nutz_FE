@@ -11,7 +11,13 @@
     <img src="assets/creature7.png" style="position:absolute; margin-top:27%; margin-left:36%;" class="monster" *ngIf=shouldDisplay(5,2) />
     <img src="assets/creature8.png" style="position:absolute; margin-top:21%; margin-left:55%;" class="monster" *ngIf=shouldDisplay(50,2) />
     <img src="assets/creature9.png" style="position:absolute; margin-top:15%; margin-left:60%;" class="monster" *ngIf=shouldDisplay(500,2) />
+    
+    <img src="assets/castle.png" style="position:absolute; margin-top:15%; margin-left:45%;" class="item" *ngIf="itemShouldDisplay(1)" />
+    <img src="assets/tree.png" style="position:absolute; margin-top:60%; margin-left:10%;" class="item" *ngIf="itemShouldDisplay(2)" />
+    <img src="assets/flag.png" style="position:absolute; margin-top:60%; margin-left:30%;" class="item" *ngIf="itemShouldDisplay(3)"/>
+    <img src="assets/trophy.png" style="position:absolute; margin-top:60%; margin-left:50%;" class="item" *ngIf="itemShouldDisplay(4)"/>
+    <img src="assets/boat.png" style="position:absolute; margin-top:60%; margin-left:70%;" class="item" *ngIf="itemShouldDisplay(5)"/>
+
   </div>
 </body>
-<!-- <a (click)="returnMap()"><button>Log Out</button></a> -->
 <button (click)="returnMap()" style="margin:1%; position:absolute">Return to Map</button>

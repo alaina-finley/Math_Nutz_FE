@@ -19,8 +19,7 @@ export class UserService {
 
   createUser(userData: User): Promise<User> {
     return this.http.post(this.baseUrl + '/api/users/', userData)
-      .toPromise()
-      .then(response => response.json() as User)
+      .toPromise().then(response => response.json() as User)
       .catch(this.handleError);
   }
 

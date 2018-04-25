@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
     this.auth.instantiateUsers();
   }
 
-  login(first: string, second: string): void {
+  login(first: string, second: string): void{
     this.auth.login(first, second);
   }
 
   view(): void {
-    console.log((localStorage.getItem('user')));
+    console.log((localStorage.getItem("user")));
   }
 
 }

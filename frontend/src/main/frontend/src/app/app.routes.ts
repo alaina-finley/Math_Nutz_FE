@@ -6,6 +6,7 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { UserComponent } from './user/user.component';
 import { ProblemsComponent } from './problems/problems.component';
 import { HomeLevelComponent } from './home-level/home-level.component';
+import { StoreComponent } from './store/store.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   },
   { path: 'game/:diff/:oper', component: GameLevelComponent },
   { path: 'homeIsland', component: HomeLevelComponent },
+  { path: 'store', component: StoreComponent},
 
 
   // otherwise redirect to home
