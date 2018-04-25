@@ -91,15 +91,6 @@
     </div>
 
 
-    <div class="bossIsland">
-      <a *ngIf="isBossIslandUnlocked() == true">
-        <img src="/assets/BossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
-      </a>
-      <a *ngIf="isBossIslandUnlocked() === false">
-          <img src="/assets/LockedBossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
-        </a>
-    </div>
-
     <div class="gameIsland3">
       <!-- Island 1 -->
       <!-- Island is unlocked and needs to be completed -->
@@ -139,10 +130,19 @@
       <a *ngIf="pvIslandsUnlocked() < 2">
         <img src="/assets/lockedGameIsland.png" alt="Locked Game Island" style="position:relative; top: 10%; left: 47.5%;width:10%;height:10%;">
       </a>
-
-
-      <!-- <app-island></app-island> -->
     </div>
+
+     <!--bran
+    <div class="bossIsland">
+      <a *ngIf="isBossIslandUnlocked() == true">
+        <img src="/assets/BossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
+      </a>
+      <a *ngIf="isBossIslandUnlocked() === false">
+          <img src="/assets/LockedBossIsland.png" alt="Boss Island" style="position:relative; top: 5%; left: 80%;width:20%;height:20%;">
+        </a>
+    </div>
+    -->
+
     <div class="storeIsland">
       <img src="/assets/StoreIsland.png" alt="Store Island" style="position:relative; top: 20%; left: 80%;width:10%;height:10%;">
       <img src="/assets/creatureIsland.png" alt="Creature Island" style="position:relative; top: 20%; left: 5%;width:10%;height:10%;">
