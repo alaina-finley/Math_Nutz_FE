@@ -26,7 +26,11 @@ export class HomeLevelComponent implements OnInit {
     this.router.navigate(['../islandMap']);
   }
 
-  shouldDisplay(diff: number, oper: number) {
+  isDemo(){
+    return 'demo' == (JSON.parse(localStorage.getItem("user"))).role;
+  }
+
+  shouldDisplay(diff: number, oper: number){
     // var sr = (JSON.parse(localStorage.getItem("progresses"))).find(p => p.student_id == studentId);
     let idNo = JSON.parse(localStorage.getItem("user")).id;
     let records = JSON.parse(localStorage.getItem("progresses"));

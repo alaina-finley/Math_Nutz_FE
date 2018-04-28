@@ -41,7 +41,6 @@
           <input type="number" #studentAnswer required/>
           <input (click)=checkAns(currentQues,studentAnswer.value) type="submit" value="Check Answer"/>
           <input *ngIf="checkIfSkip()" (click)=teacherSkip() type="submit" value="Skip" />
-          <!-- <button (click)=checkAns(currentQues.first,currentQues.second,currentQues.operation)>Check my Answer</button> -->
         </form>
         <div>
           <div  *ngIf="rewardPhase">
