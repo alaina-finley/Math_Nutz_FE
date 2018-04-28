@@ -1,20 +1,20 @@
 <body>
   <div>
       <h1>Store</h1>
-      <p> Your coins: </p>
-      <p> Item: Castle -- Costs: 150 <button (click)="buyItem(1)">buy</button></p>
+      <p> Your coins: {{getCoins()}}</p>
+      <p> Item: Castle -- Costs: 150 <button *ngIf="checkIfPossible(1)" (click)="buyItem(1)">buy</button></p>
       <img src="assets/castle.png"/>
 
-      <p> Item: Tree -- Costs: 10 <button (click)="buyItem(2)">buy</button></p>
+      <p> Item: Tree -- Costs: 10 <button *ngIf="checkIfPossible(2)" (click)="buyItem(2)">buy</button></p>
       <img src="assets/tree.png"/>
 
-      <p> Item: Flag -- Costs: 30 <button (click)="buyItem(3)">buy</button></p>
+      <p> Item: Flag -- Costs: 30 <button *ngIf="checkIfPossible(3)" (click)="buyItem(3)">buy</button></p>
       <img src="assets/flag.png"/>
 
-      <p> Item: Trophy -- Costs: 50 <button (click)="buyItem(4)">buy</button></p>
+      <p> Item: Trophy -- Costs: 50 <button *ngIf="checkIfPossible(4)" (click)="buyItem(4)">buy</button></p>
       <img src="assets/trophy.png"/>
 
-      <p> Item: Boat -- Costs: 70 <button (click)="buyItem(5)">buy</button></p>
+      <p> Item: Boat -- Costs: 70 <button *ngIf="checkIfPossible(5)" (click)="buyItem(5)">buy</button></p>
       <img src="assets/boat.png"/>
       
       <br>

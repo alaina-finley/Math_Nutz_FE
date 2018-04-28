@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GameProgressService } from '../progress/game-progress.service';
 import { Progress } from '../progress/progress';
 import { GameProblemService } from '../problems/game-problems.service';
+import { GameCoinService } from '../coins/game-coins.service';
+import { Coin } from '../coins/coin';
 
 @Component({
   selector: 'app-game-level',
@@ -26,6 +28,9 @@ export class GameLevelComponent implements OnInit, OnChanges {
   questions = [];
   previouslycompleted = 0;
   dbquestions = [];
+  currentUserId = JSON.parse(localStorage.getItem("user")).id;
+  coins_earned = 0;
+  coin_update_needed = false;
 
   constructor(
     private problemService: ProblemService,
@@ -33,7 +38,8 @@ export class GameLevelComponent implements OnInit, OnChanges {
     private activatedRoute: ActivatedRoute,
     private gameProgressService: GameProgressService,
     private gameProblemService: GameProblemService,
-  ){}
+    private gameCoinService: GameCoinService,
+  ) {}
 
   createRandomProblems(){
     var quesArray: any[];
@@ -54,6 +60,7 @@ export class GameLevelComponent implements OnInit, OnChanges {
     this.operation = this.activatedRoute.snapshot.params.oper;
     this.gameProgressService.instantiateProgresses();
     this.gameProblemService.instantiateProblems();
+    this.gameCoinService.instantiateCoins();
 
     // get progress of student, database questions, and student id from local storage
     var us_id = JSON.parse(localStorage.getItem("user")).id;
@@ -70,6 +77,7 @@ export class GameLevelComponent implements OnInit, OnChanges {
     this.operation = this.activatedRoute.snapshot.params.oper;
     this.gameProgressService.instantiateProgresses();
     this.gameProblemService.instantiateProblems();
+    this.gameCoinService.instantiateCoins();
 
     // get progress of student, database questions, and student id from local storage
     var us_id = JSON.parse(localStorage.getItem("user")).id;
@@ -127,11 +135,6 @@ export class GameLevelComponent implements OnInit, OnChanges {
     }
   }
 
-  // sets coinNum to a random number between 5 and 25
-  setCoinNum(): number {
-    return Math.floor(Math.random() * ((25 - 5) + 1) + 5);
-  }
-
  displayProb(prob: number): void {
    if (this.quesSelected == false){
      this.currentQues = this.questions[prob];
@@ -153,8 +156,27 @@ export class GameLevelComponent implements OnInit, OnChanges {
     this.rewardPhase = true;
  }
 
+ // sets coinNum to a random number between 5 and 25
+ getCoinNum(): number {
+  const coins_earned = Math.floor(Math.random() * ((25 - 5) + 1) + 5);
+  this.coins_earned = coins_earned;
+  this.coin_update_needed = true;
+  return coins_earned;
+}
+
+// update user coins
+updateUserCoins(): void {
+  const current_coins = this.gameCoinService.getTotalCoins(this.currentUserId);
+  const new_total = this.coins_earned + current_coins;
+  this.gameCoinService.updateCoins(this.currentUserId, new_total);
+  this.coin_update_needed = false;
+}
+
  resetBoard(ques: any, correct: boolean): void {
-   if(correct) {
+   if (this.coin_update_needed === true) {
+     this.updateUserCoins();
+   }
+   if (correct) {
      ques.completed = correct;
      // increments total and correct
      this.gameProgressService.incrementLevCorrect((JSON.parse(localStorage.getItem('user'))).id, this.difficulty, this.operation);
@@ -173,6 +195,10 @@ export class GameLevelComponent implements OnInit, OnChanges {
    this.quesSelected = false;
    this.rewardPhase = false;
  }
+
+ getCoins(): number {
+  return (this.gameCoinService.getTotalCoins(this.currentUserId));
+}
 
  returnToMap(){
    this.router.navigate(['islandMap']);
