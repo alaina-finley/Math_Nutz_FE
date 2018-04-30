@@ -1,14 +1,24 @@
-<div>
-  <h1 class="welcome">Welcome to Island Hopper</h1>
-</div>
-<p> Your coins: {{getCoins()}}</p>
+<html>
+    <!-- <div style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
+        <img src='assets/background.jpeg' style='width:100%;height:100%' alt='[]' /> -->
+        
+<body style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
+    <!-- <img src='assets/background.jpeg' style='width:100%;height:100%' alt='[]' /> -->
+  
+    <nav>
+        <a [routerLink]="['islandMap']"> island map </a>
+</nav>
+<h1> 
+  <img src ="assets/IslandHopperLogo.png" style="position: relative; width: 50%; height: 50%">
+  <!-- <h1 class="welcome">Welcome to Island Hopper</h1> -->
+</h1>
 
-<div class="row">
+<div class="row" style = "background-color:#089de3" >
   <div class="column">
   <!-- <mat-card> -->
       <!-- <mat-card-content> -->
           <div>
-            <img src="assets/island.png" class="islandImg"/>
+            <img src="assets/island.png" class="islandImg">
 
             <i (click)="displayProb(0)" class="fa fa-question" style="position:absolute; margin-top:10%; margin-left:11%;" *ngIf=!questions[0].completed></i>
             <i (click)="displayProb(1)" class="fa fa-question" style="position:absolute; margin-top:8%; margin-left:19%;" *ngIf=!questions[1].completed></i>
@@ -27,61 +37,61 @@
 <div class="column">
   <!-- <mat-card> -->
     <!-- <mat-card-content> -->
-    <a (click)="returnToMap()"><button>Return to Map</button></a>
-      <div *ngIf="quesSelected" class="flex-container flex-center" style="flex-direction: column">
-        <h2>You have found the following problem: </h2>
+      <div *ngIf="quesSelected" class="flex-container flex-center" style="flex-direction: column; background-color:#089de3">
+        <h2 >You have found the following problem: </h2>
         <div [ngSwitch]="currentQues.operation">
           <ng-template [ngSwitchCase]= "0"> <h1> {{currentQues.first}} + {{currentQues.second}} </h1></ng-template>
           <ng-template [ngSwitchCase]= "1"> <h1> {{currentQues.first}} - {{currentQues.second}} </h1> </ng-template>
-          <ng-template [ngSwitchCase]= "2"> <h1> {{currentQues.first}} + {{currentQues.second}} </h1></ng-template>
           <ng-template ngSwitchDefault> </ng-template>
         </div>
-        <h2>What is your answer: </h2>
-        <form>
+        <h2 style >What is your answer: </h2>
+        <form >
           <input type="number" #studentAnswer required/>
           <input (click)=checkAns(currentQues,studentAnswer.value) type="submit" value="Check Answer"/>
-          <input *ngIf="checkIfSkip()" (click)=teacherSkip() type="submit" value="Skip" />
+          <!-- <button (click)=checkAns(currentQues.first,currentQues.second,currentQues.operation)>Check my Answer</button> -->
         </form>
-        <div>
-          <div  *ngIf="rewardPhase">
-            <div [ngSwitch]="currentCorrect">
-              <ng-template [ngSwitchCase]= "1">
-                <h1> Congratulations! You earned: </h1>
-                <div [ngSwitch]="currentQues.rewardType">
-
+        <div >
+            <div  *ngIf="rewardPhase">
+                <div [ngSwitch]="currentCorrect">
+                  <ng-template [ngSwitchCase]= "1">
+                    <h1> Congratulations! You earned: </h1>
+                    <div [ngSwitch]="currentQues.rewardType">
+    
+                     <ng-template [ngSwitchCase]= "0">
+                           <div class="rewardBox">
+                             <img src="assets/coin.png" style="width:100%;height:100%;"/>
+                           </div>
+                           <div class="rewardBox">
+                             <p>x{{setCoinNum()}}</p>
+                           </div>
+                       </ng-template>
+                       <ng-template [ngSwitchCase]= "1">
+                           <div class="rewardBox">
+                             <img src="assets/eggshell.png" style="width:100%;height:100%;"/>
+                           </div>
+                           <div class="rewardBox">
+                             <p>An egg piece!</p>
+                           </div>
+    
+                       </ng-template>
+    
+                   </div>
+                    <input (click)=resetBoard(currentQues,true) type="submit" value="Awesome!"/>
+                  </ng-template>
                   <ng-template [ngSwitchCase]= "0">
-                       <div class="rewardBox">
-                         <img src="assets/coin.png" style="width:100%;height:100%;"/>
-                       </div>
-                       <div class="rewardBox">
-                         <p>5</p> <!--TODO: "updateUserCoins(5)"-->
-                       </div>
+                     <h1> Nice Try! The correct answer was: {{currentAns}}</h1>
+                     <input (click)=resetBoard(currentQues,false) type="submit" value="That's Okay!"/>
                    </ng-template>
-                   <ng-template [ngSwitchCase]= "1">
-                       <div class="rewardBox">
-                         <img src="assets/eggshell.png" style="width:100%;height:100%;"/>
-                       </div>
-                       <div class="rewardBox">
-                         <p>An egg piece!</p>
-                       </div>
-
-                    </ng-template>
-
+                  <ng-template ngSwitchDefault> </ng-template>
                 </div>
-                <input (click)=resetBoard(currentQues,true) type="submit" value="Awesome!"/>
-              </ng-template>
-              <ng-template [ngSwitchCase]= "0">
-                 <h1> Nice Try! The correct answer was: {{currentAns}}</h1>
-                 <input (click)=resetBoard(currentQues,false) type="submit" value="That's Okay!"/>
-               </ng-template>
-              <ng-template ngSwitchDefault> </ng-template>
-            </div>
-
-          </div>
+    
+             </div>
         </div>
       </div>
-
     <!-- </mat-card-content> -->
   <!-- </mat-card> -->
 </div>
 </div>
+</body>
+<!-- </div> -->
+</html>
