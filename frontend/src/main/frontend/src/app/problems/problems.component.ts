@@ -27,7 +27,6 @@ export class ProblemsComponent implements OnInit {
   }
 
   createProblem(first: number, second:number): void {
-    //HTMLInputElement workaround to get 
     var diff = +(<HTMLInputElement>document.querySelector('input[name=difficulty]:checked')).value;
     var oper = +(<HTMLInputElement>document.querySelector('input[name=oper]:checked')).value;
     this.problemService.createProblem(new Problem(this.getNextIndex(),first,second,oper,diff))
