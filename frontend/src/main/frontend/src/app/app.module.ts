@@ -24,9 +24,10 @@ import { routes } from './app.routes';
 import { ProgressComponent } from './progress/progress.component';
 import { TeacherComponent } from './teacher/teacher.component';
 import { HomeLevelComponent } from './home-level/home-level.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule, HttpClientModule, HttpModule, routes ],
+  imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule, HttpClientModule, HttpModule, routes, ChartsModule ],
   declarations: [ AppComponent, GameLevelComponent, ProblemsComponent, UserComponent, LoginComponent, IslandMapComponent, ProgressComponent, TeacherComponent, HomeLevelComponent ],
   providers: [ ProblemService, UserService, AuthenticationService, ProgressService, GameProgressService, GameProblemService, UsefulUserService ],
   bootstrap:    [ AppComponent ]

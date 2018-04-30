@@ -2,7 +2,7 @@
 <tr *ngFor="let user of users">
   <td *ngIf="user.role=='student'">
     <p>
-      User: {{user.username}}     Accuracy: {{(getAllCorrect(user.id)/getAllTotal(user.id)).toFixed(2)}}  <a (click)="deleteUser(user.id)"><i class="fa fa-trash"></i></a>
+      User: {{user.username}}    Password: {{user.password}} <button (click)="generateGraph(user.id, user.username)">Progress</button> <a (click)="deleteUser(user.id)"><i class="fa fa-trash"></i></a>
     </p>
   </td>
 </tr>
@@ -13,3 +13,30 @@
         <button (click)="createUser(username.value,password.value)">submit</button>
 </form>
 </div>
+
+<div>
+  <div style="display: block" *ngIf="showCharts">
+    <h1 align="center">Cumulative Progress for {{barChartTitle}}</h1>
+    <canvas baseChart height="80"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            >
+    </canvas>
+    <button (click)="getAddition()">Addition Progress</button>
+    <button (click)="getSubtraction()">Subtraction Progress</button>
+    <button (click)="getPlaceValue()">Place Value Progress</button>
+    <p></p>
+    <button (click)="hideCharts()">Done</button>
+  </div>
+
+</div>
+
+<!-- <div class="row">
+  <div class="column">
+      <img src="/assets/gameIsland.png" alt="Game Island">
+      <img src="/assets/gameIsland.png" alt="Game Island">
+  </div>
+</div> -->

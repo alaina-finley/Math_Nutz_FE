@@ -40,6 +40,7 @@
           <input type="number" #studentAnswer required/>
           <input (click)=checkAns(currentQues,studentAnswer.value) type="submit" value="Check Answer"/>
           <input *ngIf="checkIfSkip()" (click)=teacherSkip() type="submit" value="Skip" />
+          <!-- <button (click)=checkAns(currentQues.first,currentQues.second,currentQues.operation)>Check my Answer</button> -->
         </form>
         <div>
           <div  *ngIf="rewardPhase">
@@ -79,8 +80,17 @@
           </div>
         </div>
       </div>
+      <button (click)="generateGraph()" *ngIf="!showCharts && !quesSelected">See Progress</button>
+      <div style="display: block" *ngIf="showCharts" class="flex-container flex-center" style="flex-direction: column">
+        <h1 align="center">Your Progress So Far</h1>
+        <canvas baseChart height="80"
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                >
+        </canvas>
+        <button (click)="hideCharts()">Done</button>
+      </div>
 
-    <!-- </mat-card-content> -->
-  <!-- </mat-card> -->
 </div>
 </div>
