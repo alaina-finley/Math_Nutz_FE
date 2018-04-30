@@ -16,14 +16,14 @@
     width: 50%;
 }
 
-/* body { */
+body {
 
-    /* .main_content{
+    .main_content{
         position:absolute;
         /* padding-bottom: 100%; */
-        /* margin:0%; */
-        /* background: #089de3; */
-    
+        margin:0%;
+        background: #089de3;
+    }
     /* .gameIsland1{
         position: relative;
         margin-left: 50%;
@@ -45,7 +45,6 @@
 
         background-color: #089de3;
     }
-    
     .storeIsland{
         position: fixed;
         margin-left: 50%;
@@ -53,22 +52,7 @@
 
         background-color: #089de3;
     } */
-    .gameIsland1{
-        font-family: 'Marker Felt';
-        font-size: 115%;
-        color: white;
-    }
-    .gameIsland2{
-        font-family: 'Marker Felt';
-        font-size: 115%;
-        color: white;
-    }
-  .gameIsland3{
-        font-family: 'Marker Felt';
-        font-size: 115%;
-        color: white;
-    }
-
+}
 body, input[text], button {
 background: #089de3;
   color: #888;

@@ -27,6 +27,12 @@ export class GameLevelComponent implements OnInit, OnChanges {
   previouslycompleted = 0;
   dbquestions = [];
 
+  // Pie
+  public pieChartLabels:string[] = ['Correct', 'Incorrect'];
+  public pieChartData:number[] = [0,0];
+  public pieChartType:string = 'pie';
+  public showCharts:boolean = false;
+
   constructor(
     private problemService: ProblemService,
     private router: Router,
@@ -34,6 +40,44 @@ export class GameLevelComponent implements OnInit, OnChanges {
     private gameProgressService: GameProgressService,
     private gameProblemService: GameProblemService,
   ){}
+
+  generateGraph(): void {
+    let us_id = JSON.parse(localStorage.getItem("user")).id;
+    let sr = (JSON.parse(localStorage.getItem("progresses"))).find(p => p.student_id == us_id);
+    let arrOfTotal = [sr.lev11_total, sr.lev12_total, sr.lev13_total, sr.lev21_total, sr.lev22_total, sr.lev23_total, sr.lev31_total, sr.lev32_total, sr.lev33_total, sr.boss_total];
+    let arrOfCorr = [sr.lev11_correct, sr.lev12_correct, sr.lev13_correct, sr.lev21_correct, sr.lev22_correct, sr.lev23_correct, sr.lev31_correct, sr.lev32_correct, sr.lev33_correct, sr.boss_correct];
+    console.log("Grabbed data");
+    if(this.difficulty == 5){
+      if(this.operation == 0){
+        this.pieChartData = [arrOfCorr[0], arrOfTotal[0]-arrOfCorr[0]];
+      }else if(this.operation == 1){
+        this.pieChartData = [arrOfCorr[3], arrOfTotal[3]-arrOfCorr[3]];
+      }else{
+        this.pieChartData = [arrOfCorr[6], arrOfTotal[6]-arrOfCorr[6]];
+      }
+    }else if(this.difficulty == 50){
+      if(this.operation == 0){
+        this.pieChartData = [arrOfCorr[1], arrOfTotal[1]-arrOfCorr[1]];
+      }else if(this.operation == 1){
+        this.pieChartData = [arrOfCorr[4], arrOfTotal[4]-arrOfCorr[4]];
+      }else{
+        this.pieChartData = [arrOfCorr[7], arrOfTotal[7]-arrOfCorr[7]];
+      }
+    }else{
+      if(this.operation == 0){
+        this.pieChartData = [arrOfCorr[2], arrOfTotal[2]-arrOfCorr[2]];
+      }else if(this.operation == 1){
+        this.pieChartData = [arrOfCorr[5], arrOfTotal[5]-arrOfCorr[5]];
+      }else{
+        this.pieChartData = [arrOfCorr[8], arrOfTotal[8]-arrOfCorr[8]];
+      }
+    }
+    console.log("Data: " + this.pieChartData);
+    this.showCharts = true;
+  }
+  hideCharts(): void {
+    this.showCharts = false;
+  }
 
   createRandomProblems(){
     var quesArray: any[];
@@ -50,7 +94,6 @@ export class GameLevelComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges){
     // get difficulty and operation from route
-    
     this.difficulty = this.activatedRoute.snapshot.params.diff;
     this.operation = this.activatedRoute.snapshot.params.oper;
     this.gameProgressService.instantiateProgresses();

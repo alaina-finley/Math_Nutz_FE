@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BossIslandComponent } from './boss-island.component';
+import { HomeLevelComponent } from './home-level.component';
 
-describe('BossIslandComponent', () => {
-  let component: BossIslandComponent;
-  let fixture: ComponentFixture<BossIslandComponent>;
+describe('HomeLevelComponent', () => {
+  let component: HomeLevelComponent;
+  let fixture: ComponentFixture<HomeLevelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BossIslandComponent ]
+      declarations: [ HomeLevelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BossIslandComponent);
+    fixture = TestBed.createComponent(HomeLevelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

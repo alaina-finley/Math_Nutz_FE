@@ -3,9 +3,6 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-    font-family: 'Marker Felt';
-    font-size: 135%;
-    color: white;
 }
 body{
    height:100%;
@@ -13,13 +10,4 @@ body{
    background-image:url("assets/LoginBackground.png");/*your background image*/
    background-repeat:no-repeat;/*we want to have one single image not a repeated one*/
    background-size:cover;/*this sets the image to fullscreen covering the whole screen*/
- }
- button{
-     /* display: in; */
-     background-image:url("assets/button_login.png");
-     position: relative;
-     /* padding: %; */
-     height: 190%;
-     width: 20.5%;
-     /* background-size:cover;this sets the image to fullscreen covering the whole screen */
  }
