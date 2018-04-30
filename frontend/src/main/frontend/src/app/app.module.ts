@@ -23,13 +23,20 @@ import { UsefulUserService } from './user/useful-user.service';
 import { routes } from './app.routes';
 import { ProgressComponent } from './progress/progress.component';
 import { TeacherComponent } from './teacher/teacher.component';
+import { BossIslandComponent } from './boss-island/boss-island.component';
+import { StoreComponent } from './store/store.component';
+import { CoinsComponent } from './coins/coins.component';
 import { HomeLevelComponent } from './home-level/home-level.component';
+import { CoinService } from './coins/coins.service';
+import { GameCoinService } from './coins/game-coins.service';
+import { StoreService } from './store/store.service';
+import { GameStoreService } from './store/game-store.service';
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule, HttpClientModule, HttpModule, routes, ChartsModule ],
-  declarations: [ AppComponent, GameLevelComponent, ProblemsComponent, UserComponent, LoginComponent, IslandMapComponent, ProgressComponent, TeacherComponent, HomeLevelComponent ],
-  providers: [ ProblemService, UserService, AuthenticationService, ProgressService, GameProgressService, GameProblemService, UsefulUserService ],
+  declarations: [ AppComponent, GameLevelComponent, ProblemsComponent, UserComponent, LoginComponent, IslandMapComponent, ProgressComponent, TeacherComponent, BossIslandComponent, StoreComponent, CoinsComponent, HomeLevelComponent ],
+  providers: [ ProblemService, UserService, AuthenticationService, ProgressService, GameProgressService, GameProblemService, UsefulUserService, CoinService, GameCoinService, StoreService, GameStoreService ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

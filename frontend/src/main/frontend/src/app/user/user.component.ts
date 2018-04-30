@@ -13,7 +13,9 @@ import { Problem } from '../problems/problem';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  // userArr = [];
   users: User[];
+  // newUser: User = new User(,'dumb','dumb','test');
 
   public barChartLabels:string[] = ['Easy', 'Intermediate', 'Difficult'];
   public barChartData:any[] = [
@@ -30,7 +32,6 @@ export class UserComponent implements OnInit {
   };
   public barChartUser:number = 0;
 
-
   constructor(
     private userService: UserService,
     private gameProgress: GameProgressService,
@@ -43,47 +44,47 @@ export class UserComponent implements OnInit {
   }
 
   generateGraph(id: number, name: string): void {
-    // this.pieChartData = [this.getAllCorrect(id), (this.getAllTotal(id)-this.getAllCorrect(id))];
-    // this.pieChartTitle = name;
-    this.barChartUser = id;
-    this.getAddition();
-    this.barChartTitle = name;
-    this.showCharts = true;
-  }
-  hideCharts(): void {
-    this.showCharts = false;
-    this.barChartUser = 0;
-  }
-  getAddition(): void {
-    let correctArr = this.gameProgress.getAllCorrect(this.barChartUser);
-    let totalArr = this.gameProgress.getAllTotal(this.barChartUser);
-    let dataCorr = [correctArr[0], correctArr[1], correctArr[2]];
-    let dataTot = [totalArr[0]-correctArr[0], totalArr[1]-correctArr[1], totalArr[2]-correctArr[2]];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = dataCorr;
-    clone[1].data = dataTot;
-    this.barChartData = clone;
-  }
-  getSubtraction(): void {
-    let correctArr = this.gameProgress.getAllCorrect(this.barChartUser);
-    let totalArr = this.gameProgress.getAllTotal(this.barChartUser);
-    let dataCorr = [correctArr[3], correctArr[4], correctArr[5]];
-    let dataTot = [totalArr[3]-correctArr[3], totalArr[4]-correctArr[4], totalArr[5]-correctArr[5]];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = dataCorr;
-    clone[1].data = dataTot;
-    this.barChartData = clone;
-  }
-  getPlaceValue(): void {
-    let correctArr = this.gameProgress.getAllCorrect(this.barChartUser);
-    let totalArr = this.gameProgress.getAllTotal(this.barChartUser);
-    let dataCorr = [correctArr[6], correctArr[7], correctArr[8]];
-    let dataTot = [totalArr[6]-correctArr[6], totalArr[7]-correctArr[7], totalArr[8]-correctArr[8]];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = dataCorr;
-    clone[1].data = dataTot;
-    this.barChartData = clone;
-  }
+      // this.pieChartData = [this.getAllCorrect(id), (this.getAllTotal(id)-this.getAllCorrect(id))];
+      // this.pieChartTitle = name;
+      this.barChartUser = id;
+      this.getAddition();
+      this.barChartTitle = name;
+      this.showCharts = true;
+    }
+    hideCharts(): void {
+      this.showCharts = false;
+      this.barChartUser = 0;
+    }
+    getAddition(): void {
+      let correctArr = this.gameProgress.getAllCorrect(this.barChartUser);
+      let totalArr = this.gameProgress.getAllTotal(this.barChartUser);
+      let dataCorr = [correctArr[0], correctArr[1], correctArr[2]];
+      let dataTot = [totalArr[0]-correctArr[0], totalArr[1]-correctArr[1], totalArr[2]-correctArr[2]];
+      let clone = JSON.parse(JSON.stringify(this.barChartData));
+      clone[0].data = dataCorr;
+      clone[1].data = dataTot;
+      this.barChartData = clone;
+    }
+    getSubtraction(): void {
+      let correctArr = this.gameProgress.getAllCorrect(this.barChartUser);
+      let totalArr = this.gameProgress.getAllTotal(this.barChartUser);
+      let dataCorr = [correctArr[3], correctArr[4], correctArr[5]];
+      let dataTot = [totalArr[3]-correctArr[3], totalArr[4]-correctArr[4], totalArr[5]-correctArr[5]];
+      let clone = JSON.parse(JSON.stringify(this.barChartData));
+      clone[0].data = dataCorr;
+      clone[1].data = dataTot;
+      this.barChartData = clone;
+    }
+    getPlaceValue(): void {
+      let correctArr = this.gameProgress.getAllCorrect(this.barChartUser);
+      let totalArr = this.gameProgress.getAllTotal(this.barChartUser);
+      let dataCorr = [correctArr[6], correctArr[7], correctArr[8]];
+      let dataTot = [totalArr[6]-correctArr[6], totalArr[7]-correctArr[7], totalArr[8]-correctArr[8]];
+      let clone = JSON.parse(JSON.stringify(this.barChartData));
+      clone[0].data = dataCorr;
+      clone[1].data = dataTot;
+      this.barChartData = clone;
+    }
 
   getUsers(): void {
     this.userService.getUsers()

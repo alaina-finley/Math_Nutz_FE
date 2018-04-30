@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GameProgressService } from '../progress/game-progress.service';
 import { Progress } from '../progress/progress';
 import { GameProblemService } from '../problems/game-problems.service';
+import { GameCoinService } from '../coins/game-coins.service';
+import { Coin } from '../coins/coin';
 
 @Component({
   selector: 'app-game-level',
@@ -26,12 +28,15 @@ export class GameLevelComponent implements OnInit, OnChanges {
   questions = [];
   previouslycompleted = 0;
   dbquestions = [];
+  currentUserId = JSON.parse(localStorage.getItem("user")).id;
+  coins_earned = 0;
+  coin_update_needed = false;
 
   // Pie
-  public pieChartLabels:string[] = ['Correct', 'Incorrect'];
-  public pieChartData:number[] = [0,0];
-  public pieChartType:string = 'pie';
-  public showCharts:boolean = false;
+public pieChartLabels:string[] = ['Correct', 'Incorrect'];
+public pieChartData:number[] = [0,0];
+public pieChartType:string = 'pie';
+public showCharts:boolean = false;
 
   constructor(
     private problemService: ProblemService,
@@ -39,45 +44,46 @@ export class GameLevelComponent implements OnInit, OnChanges {
     private activatedRoute: ActivatedRoute,
     private gameProgressService: GameProgressService,
     private gameProblemService: GameProblemService,
+    private gameCoinService: GameCoinService,
   ){}
 
   generateGraph(): void {
-    let us_id = JSON.parse(localStorage.getItem("user")).id;
-    let sr = (JSON.parse(localStorage.getItem("progresses"))).find(p => p.student_id == us_id);
-    let arrOfTotal = [sr.lev11_total, sr.lev12_total, sr.lev13_total, sr.lev21_total, sr.lev22_total, sr.lev23_total, sr.lev31_total, sr.lev32_total, sr.lev33_total, sr.boss_total];
-    let arrOfCorr = [sr.lev11_correct, sr.lev12_correct, sr.lev13_correct, sr.lev21_correct, sr.lev22_correct, sr.lev23_correct, sr.lev31_correct, sr.lev32_correct, sr.lev33_correct, sr.boss_correct];
-    console.log("Grabbed data");
-    if(this.difficulty == 5){
-      if(this.operation == 0){
-        this.pieChartData = [arrOfCorr[0], arrOfTotal[0]-arrOfCorr[0]];
-      }else if(this.operation == 1){
-        this.pieChartData = [arrOfCorr[3], arrOfTotal[3]-arrOfCorr[3]];
+      let us_id = JSON.parse(localStorage.getItem("user")).id;
+      let sr = (JSON.parse(localStorage.getItem("progresses"))).find(p => p.student_id == us_id);
+      let arrOfTotal = [sr.lev11_total, sr.lev12_total, sr.lev13_total, sr.lev21_total, sr.lev22_total, sr.lev23_total, sr.lev31_total, sr.lev32_total, sr.lev33_total, sr.boss_total];
+      let arrOfCorr = [sr.lev11_correct, sr.lev12_correct, sr.lev13_correct, sr.lev21_correct, sr.lev22_correct, sr.lev23_correct, sr.lev31_correct, sr.lev32_correct, sr.lev33_correct, sr.boss_correct];
+      console.log("Grabbed data");
+      if(this.difficulty == 5){
+        if(this.operation == 0){
+          this.pieChartData = [arrOfCorr[0], arrOfTotal[0]-arrOfCorr[0]];
+        }else if(this.operation == 1){
+          this.pieChartData = [arrOfCorr[3], arrOfTotal[3]-arrOfCorr[3]];
+        }else{
+          this.pieChartData = [arrOfCorr[6], arrOfTotal[6]-arrOfCorr[6]];
+        }
+      }else if(this.difficulty == 50){
+        if(this.operation == 0){
+          this.pieChartData = [arrOfCorr[1], arrOfTotal[1]-arrOfCorr[1]];
+        }else if(this.operation == 1){
+          this.pieChartData = [arrOfCorr[4], arrOfTotal[4]-arrOfCorr[4]];
+        }else{
+          this.pieChartData = [arrOfCorr[7], arrOfTotal[7]-arrOfCorr[7]];
+        }
       }else{
-        this.pieChartData = [arrOfCorr[6], arrOfTotal[6]-arrOfCorr[6]];
+        if(this.operation == 0){
+          this.pieChartData = [arrOfCorr[2], arrOfTotal[2]-arrOfCorr[2]];
+        }else if(this.operation == 1){
+          this.pieChartData = [arrOfCorr[5], arrOfTotal[5]-arrOfCorr[5]];
+        }else{
+          this.pieChartData = [arrOfCorr[8], arrOfTotal[8]-arrOfCorr[8]];
+        }
       }
-    }else if(this.difficulty == 50){
-      if(this.operation == 0){
-        this.pieChartData = [arrOfCorr[1], arrOfTotal[1]-arrOfCorr[1]];
-      }else if(this.operation == 1){
-        this.pieChartData = [arrOfCorr[4], arrOfTotal[4]-arrOfCorr[4]];
-      }else{
-        this.pieChartData = [arrOfCorr[7], arrOfTotal[7]-arrOfCorr[7]];
-      }
-    }else{
-      if(this.operation == 0){
-        this.pieChartData = [arrOfCorr[2], arrOfTotal[2]-arrOfCorr[2]];
-      }else if(this.operation == 1){
-        this.pieChartData = [arrOfCorr[5], arrOfTotal[5]-arrOfCorr[5]];
-      }else{
-        this.pieChartData = [arrOfCorr[8], arrOfTotal[8]-arrOfCorr[8]];
-      }
+      console.log("Data: " + this.pieChartData);
+      this.showCharts = true;
     }
-    console.log("Data: " + this.pieChartData);
-    this.showCharts = true;
-  }
-  hideCharts(): void {
-    this.showCharts = false;
-  }
+    hideCharts(): void {
+      this.showCharts = false;
+    }
 
   createRandomProblems(){
     var quesArray: any[];
@@ -94,6 +100,7 @@ export class GameLevelComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges){
     // get difficulty and operation from route
+
     this.difficulty = this.activatedRoute.snapshot.params.diff;
     this.operation = this.activatedRoute.snapshot.params.oper;
     this.gameProgressService.instantiateProgresses();
@@ -171,11 +178,6 @@ export class GameLevelComponent implements OnInit, OnChanges {
     }
   }
 
-  // sets coinNum to a random number between 5 and 25
-  setCoinNum(): number {
-    return Math.floor(Math.random() * ((25 - 5) + 1) + 5);
-  }
-
  displayProb(prob: number): void {
    if (this.quesSelected == false){
      this.currentQues = this.questions[prob];
@@ -197,7 +199,26 @@ export class GameLevelComponent implements OnInit, OnChanges {
     this.rewardPhase = true;
  }
 
+ // sets coinNum to a random number between 5 and 25
+ getCoinNum(): number {
+  const coins_earned = Math.floor(Math.random() * ((25 - 5) + 1) + 5);
+  this.coins_earned = coins_earned;
+  this.coin_update_needed = true;
+  return coins_earned;
+}
+
+// update user coins
+updateUserCoins(): void {
+  const current_coins = this.gameCoinService.getTotalCoins(this.currentUserId);
+  const new_total = this.coins_earned + current_coins;
+  this.gameCoinService.updateCoins(this.currentUserId, new_total);
+  this.coin_update_needed = false;
+}
+
  resetBoard(ques: any, correct: boolean): void {
+   if (this.coin_update_needed === true) {
+  this.updateUserCoins();
+}
    if(correct) {
      ques.completed = correct;
      // increments total and correct
@@ -217,6 +238,9 @@ export class GameLevelComponent implements OnInit, OnChanges {
    this.quesSelected = false;
    this.rewardPhase = false;
  }
+ getCoins(): number {
+ return (this.gameCoinService.getTotalCoins(this.currentUserId));
+}
 
  returnToMap(){
    this.router.navigate(['islandMap']);
