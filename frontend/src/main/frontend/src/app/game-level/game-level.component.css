@@ -1,37 +1,19 @@
 p {
   font-family: Lato;
-  background-color:#089de3;
-}
-h1 {
-  margin:0%;
-  background: #089de3;
-  
-  padding-left: 35%;
-  position: relative;
-  color: #369;
-
-}
-body{
-    background-image: url(assets/background.jpeg);
 }
 
 .content{
-background-color:#089de3;
   display:grid;
   grid-template-columns: 1fr 1fr;
   padding: 2em;
-
 }
 .flex-container{
-background-color:#089de3;
   display:flex;
   width:100%;
-
 }
 
 .flex-center{
-    background-color:#089de3;
-     align-items: center;
+  align-items: center;
   justify-content: center;
 }
 /* mat-card-content{
@@ -43,14 +25,12 @@ background-color:#089de3;
 
   display:grid;
   grid-template-columns: 2fr 1fr;
-  background-color: #089de3;
 }
 
 .score{
   margin-top:.5em;
   margin-left:2em;
-  font-size:1.5em;
-
+  font-size:1.5em
 }
 
 .content2{
@@ -59,7 +39,6 @@ background-color:#089de3;
 }
 
 .fa{
-
   cursor:pointer;
   font-size:5em;
   color: red;
@@ -73,7 +52,6 @@ background-color:#089de3;
   position: absolute;
   height: 80%;
   width: 50%;
-
 }
 
 .qmark{
@@ -81,7 +59,6 @@ background-color:#089de3;
 }
 
 .column {
-    background-color: style = #089de3;
     float: left;
     width: 48%;
     padding: 10px;
@@ -96,5 +73,12 @@ background-color:#089de3;
 
 .welcome {
   font-size: 2em;
-  background-color: #089de3;
+  background-color: #5042f4;
+}
+
+.rewardBox{
+width: 20%;
+height: 20%;
+display: inline-block; /* Change this to block and see what happens */
+position:relative;
 }
